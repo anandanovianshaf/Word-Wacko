@@ -1,0 +1,303 @@
+/* --- CSS STYLING BASED ON YOUR FIGMA DESIGN & PROMPTS (REVISED) --- */
+
+/* --- General Styling & Variables --- */
+:root {
+    --bg-gradient: linear-gradient(135deg, #8E2DE2, #4A00E0);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --primary-text: #333;
+    --secondary-text: #6c757d;
+    --accent-color-1: #6a11cb;
+    --accent-color-2: #2575fc;
+    --correct-color: #2ecc71;
+    --wrong-color: #e74c3c;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-gradient);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    box-sizing: border-box;
+    color: var(--primary-text);
+    overflow: hidden; /* FIX: Mencegah scrollbar muncul di halaman */
+}
+
+.screen {
+    width: 100%;
+    /* FIX: Reverted to a more standard max-width as wrapping is re-enabled */
+    max-width: 550px; 
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Card Styling (Start & Score Screens) --- */
+.card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.start-card h1 {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.start-card p, .score-card p {
+    color: var(--secondary-text);
+    line-height: 1.6;
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--accent-color-1);
+    margin-bottom: 1rem;
+}
+
+/* --- Button Styling --- */
+button {
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#start-button, #play-again-button {
+    background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2));
+    color: white;
+    margin-top: 1.5rem;
+    width: 80%;
+}
+
+#start-button:hover, #play-again-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Game Screen Header --- */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+    text-align: center;
+    color: var(--secondary-text);
+}
+.info-item p {
+    margin: 0.2rem 0;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    justify-content: center;
+}
+.info-item span {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-text);
+}
+#lives-icons {
+    display: flex;
+    gap: 0.2rem;
+}
+#lives-icons .fa-heart {
+    color: var(--wrong-color);
+    transition: color 0.3s ease;
+}
+#lives-icons .fa-heart.lost {
+    color: rgba(0, 0, 0, 0.1);
+}
+
+/* --- Game Screen Body --- */
+.game-body-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f0e6ff;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    color: var(--accent-color-1);
+}
+
+#question-text {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.section-title {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* --- Dynamic Letter Containers --- */
+#scrambled-letters-container, #player-answer-container {
+    display: flex;
+    /* FIX: Re-enabled wrapping to handle long words */
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.letter-tile {
+    background-color: #f0e6ff;
+    color: var(--accent-color-1);
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0; 
+}
+.letter-tile:hover {
+    transform: translateY(-2px);
+}
+.letter-tile.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* --- Answer Box Styling --- */
+.answer-box {
+    width: 45px;
+    height: 45px;
+    border: 2px dashed #dcdcdc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+.answer-box .letter-tile {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+}
+.answer-box.filled {
+    border-style: solid;
+    border-color: var(--accent-color-1);
+}
+
+/* --- Input Mode Selector --- */
+.input-mode-selector {
+    display: flex;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    padding: 5px;
+    margin: 1.5rem 0;
+}
+.input-mode-selector button {
+    flex: 1;
+    background-color: transparent;
+    color: var(--secondary-text);
+}
+.input-mode-selector button.active {
+    background-color: white;
+    color: var(--accent-color-1);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.input-mode-selector button i { margin-right: 0.5rem; }
+
+/* --- Input Fields --- */
+#type-answer-input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    text-align: center;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+/* --- Score Screen --- */
+.score-card {
+    position: relative;
+    overflow: hidden;
+    /* FIX: Ensure content is centered */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#final-score {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(to right, var(--accent-color-1), var(--accent-color-2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 0.5rem;
+}
+#countdown-text {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: var(--secondary-text);
+}
+
+/* --- Toast Notification --- */
+#toast-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000;
+}
+#toast-notification.show {
+    visibility: visible;
+    opacity: 1;
+}
+#toast-notification.correct { background-color: var(--correct-color); }
+#toast-notification.wrong { background-color: var(--wrong-color); }
+#toast-notification.info { background-color: #3498db; }
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Wacko</title>
+    <!-- Import Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Import Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Layar Awal (Start Screen) -->
+    <div class="screen" id="start-screen">
+        <div class="card start-card">
+            <i class="fas fa-gamepad card-icon"></i>
+            <h1>Word Wacko</h1>
+            <p>Fine word scramble game for a gamer, but are you? Let's find out!.</p>
+            <button id="start-button">Start</button>
+        </div>
+    </div>
+
+    <!-- Layar Permainan (Game Screen) -->
+    <div class="screen hidden" id="game-screen">
+        <div class="game-header">
+            <div class="info-item">
+                <p><i class="fas fa-star"></i> Score</p>
+                <span id="score">0</span>
+            </div>
+            <div class="info-item" id="lives-container">
+                <p><i class="fas fa-heart"></i> Lives</p>
+                <span id="lives-icons">
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart"></i>
+                </span>
+            </div>
+            <div class="info-item">
+                <p><i class="far fa-clock"></i> Time</p>
+                <span id="time">30</span>
+            </div>
+        </div>
+        <div class="game-body-card">
+            <div class="question-container">
+                <i class="fas fa-brain"></i>
+                <span>Gaming Trivia</span>
+            </div>
+            <p id="question-text">The question will appear here...</p>
+            
+            <p class="section-title">Scrambled Word</p>
+            <div id="scrambled-letters-container">
+                <!-- Huruf acak via JS -->
+            </div>
+
+            <div class="input-mode-selector">
+                <button id="type-mode-btn"><i class="fas fa-keyboard"></i> Type Answer</button>
+                <button id="click-mode-btn" class="active"><i class="fas fa-mouse-pointer"></i> Click Letter</button>
+            </div>
+
+            <div id="type-answer-container" class="hidden">
+                <input type="text" id="type-answer-input" placeholder="KETIK JAWABANMU" autocomplete="off">
+            </div>
+
+            <div id="click-answer-container">
+                <p class="section-title" id="your-answer-label">Your Answer</p>
+                <div id="player-answer-container">
+                    <!-- Kotak jawaban via JS -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Layar Skor (Score Screen) -->
+    <div class="screen hidden" id="score-screen">
+        <div class="card score-card">
+            <div id="trophy-container">
+                <i class="fas fa-trophy card-icon"></i>
+            </div>
+            <h2 id="score-title">Game Over!</h2>
+            <p>Your Final Score</p>
+            <span id="final-score">0</span>
+            <button id="play-again-button">Play Again</button>
+            <p id="countdown-text">Back to start in 10 seconds...</p>
+        </div>
+    </div>
+    
+    <!-- Notifikasi Toast -->
+    <div id="toast-notification">Notification</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
